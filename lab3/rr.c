@@ -156,6 +156,11 @@ int main(int argc, char *argv[])
   init_processes(argv[1], &data, &size);
 
   u32 quantum_length = next_int_from_c_str(argv[2]);
+  if (quantum_length == 0)
+  {
+    free(data);
+    return EINVAL;
+  }
 
   struct process_list list;
   TAILQ_INIT(&list);
